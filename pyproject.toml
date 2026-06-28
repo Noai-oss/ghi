@@ -1,0 +1,50 @@
+[project]
+name = "ghi"
+dynamic = ["version"]
+description = "Small git helpers for local-only ignores and tracked files you want Git to leave alone"
+readme = "README.md"
+authors = [
+    { name = "Noai-oss", email = "jiuwoxiao@outlook.com" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+ghi = "ghi.cli:cli"
+
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+vcs = "git"
+style = "pep440"
+bump = true
+
+[tool.uv]
+cache-keys = [
+  { file = "pyproject.toml" },
+  { git = { commit = true, tags = true } },
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.20",
+    "ty>=0.0.55",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ghi"]
+artifacts = ["src/ghi/_version.py"]
+
+[tool.hatch.build.targets.sdist]
+artifacts = ["src/ghi/_version.py"]
+
+[tool.hatch.build.hooks.version]
+path = "src/ghi/_version.py"
+template = '''
+__version__ = "{version}"
+'''
