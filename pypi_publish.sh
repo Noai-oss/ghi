@@ -13,8 +13,10 @@ version="${1:-}"
   exit 2
 }
 
-git tag -a "$version" -m "$version"
+tag="v$version"
+
+git tag -a "$tag" -m "$tag"
 uv build --no-sources --clear
 uvx twine check dist/*
-git push origin "$version"
+git push origin "$tag"
 uv publish

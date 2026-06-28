@@ -1,6 +1,6 @@
 param(
     [Parameter(Mandatory = $true)]
-    [string] $ReleaseVersion
+    [string] $version
 )
 
 $ErrorActionPreference = "Stop"
@@ -19,7 +19,7 @@ function run {
     }
 }
 
-if ($ReleaseVersion -notmatch '^\d+\.\d+\.\d+$') {
+if ($version -notmatch '^\d+\.\d+\.\d+$') {
     Write-Error "usage: .\pypi_publish.ps1 x.y.z"
     exit 2
 }
@@ -29,8 +29,10 @@ if (-not $env:UV_PUBLISH_TOKEN) {
     exit 2
 }
 
-run git tag -a "$ReleaseVersion" -m "$ReleaseVersion"
+$tag = "v$version"
+
+run git tag -a "$tag" -m "$tag"
 run uv build --no-sources --clear
 run uvx twine check dist/*
-run git push origin "$ReleaseVersion"
+run git push origin "$tag"
 run uv publish
