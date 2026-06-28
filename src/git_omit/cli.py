@@ -3,7 +3,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from ghi import __version__
+from git_omit import __version__
 
 
 class GitError(RuntimeError):
@@ -127,8 +127,8 @@ def list_items() -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="ghi",
-        description="Keep local git noise local.",
+        prog="git-omit",
+        description="Keep local Git noise local.",
     )
     parser.add_argument(
         "--version",
@@ -178,7 +178,7 @@ def cli(argv: list[str] | None = None) -> int:
             case "list":
                 list_items()
     except GitError as exc:
-        print(f"ghi: {exc}", file=sys.stderr)
+        print(f"git-omit: {exc}", file=sys.stderr)
         return 1
 
     return 0

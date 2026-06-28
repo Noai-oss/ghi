@@ -1,6 +1,6 @@
-# ghi
+# git-omit
 
-Small git helpers for local-only ignores and tracked files you want Git to leave alone.
+Small Git helpers for local-only ignores and tracked files you want Git to leave alone.
 
 ## Local ignores
 
@@ -12,25 +12,25 @@ Small git helpers for local-only ignores and tracked files you want Git to leave
 ## Installation
 
 ```sh
-uv tool install ghi
+uv tool install git-omit
 # or from GitHub
-uv tool install git+https://github.com/Noai-oss/ghi
+uv tool install git+https://github.com/Noai-oss/git-omit
 ```
 
 ## Commands
 
 | Command | Example | Effect |
 | --- | --- | --- |
-| `ghi hide <pattern>...` | `ghi hide '*.log'` | Add patterns to `.git/info/exclude` |
-| `ghi unhide <pattern>...` | `ghi unhide '*.log'` | Remove patterns from `.git/info/exclude` |
-| `ghi freeze <path>...` | `ghi freeze config.local.json` | Mark tracked files as `skip-worktree` |
-| `ghi unfreeze <path>...` | `ghi unfreeze config.local.json` | Clear `skip-worktree` |
-| `ghi list` | `ghi list` | Print hidden patterns and frozen paths |
-| `ghi --version` | `ghi --version` | Print the version |
+| `git-omit hide <pattern>...` | `git-omit hide '*.log'` | Add patterns to `.git/info/exclude` |
+| `git-omit unhide <pattern>...` | `git-omit unhide '*.log'` | Remove patterns from `.git/info/exclude` |
+| `git-omit freeze <path>...` | `git-omit freeze config.local.json` | Mark tracked files as `skip-worktree` |
+| `git-omit unfreeze <path>...` | `git-omit unfreeze config.local.json` | Clear `skip-worktree` |
+| `git-omit list` | `git-omit list` | Print hidden patterns and frozen paths |
+| `git-omit --version` | `git-omit --version` | Print the version |
 
 We recommend quoting glob patterns, like `'*.log'`, so your shell passes them unchanged.
 
-`ghi list` prints tab-separated lines:
+`git-omit list` prints tab-separated lines:
 
 ```text
 hide    *.log

@@ -1,7 +1,7 @@
 [project]
-name = "ghi"
+name = "git-omit"
 dynamic = ["version"]
-description = "Small git helpers for local-only ignores and tracked files you want Git to leave alone"
+description = "Small Git helpers for local-only ignores and tracked files you want Git to leave alone"
 readme = "README.md"
 authors = [
     { name = "Noai-oss", email = "jiuwoxiao@outlook.com" }
@@ -10,7 +10,7 @@ requires-python = ">=3.14"
 dependencies = []
 
 [project.scripts]
-ghi = "ghi.cli:cli"
+git-omit = "git_omit.cli:cli"
 
 [build-system]
 requires = ["hatchling", "uv-dynamic-versioning"]
@@ -37,14 +37,14 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/ghi"]
-artifacts = ["src/ghi/_version.py"]
+packages = ["src/git_omit"]
+artifacts = ["src/git_omit/_version.py"]
 
 [tool.hatch.build.targets.sdist]
-artifacts = ["src/ghi/_version.py"]
+artifacts = ["src/git_omit/_version.py"]
 
 [tool.hatch.build.hooks.version]
-path = "src/ghi/_version.py"
+path = "src/git_omit/_version.py"
 template = '''
 __version__ = "{version}"
 '''
